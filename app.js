@@ -2,7 +2,7 @@ const express = require('express'),
 mongoose = require('mongoose'),
 config = require('./config/db')
  
-const facillitatorRoutes = require("./routes/facillitatorRoutes")
+const staffRoutes = require("./routes/staffRoutes")
 // const serviceRoutes = require('./routes/serviceRoutes');
 
 const app = express();
@@ -24,10 +24,14 @@ db.on('error', function(err){
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
-app.use('/api',facillitatorRoutes)
-// app.use('/api',serviceRoutes)
+app.use('/api',staffRoutes)
 
 
+
+
+app.get("*", (req, res) => {
+  res.status(404).send("OOPS! WRONG ADDRESS");
+});
 
 app.listen(4000,()=>{
     console.log('listeningat port 4000');

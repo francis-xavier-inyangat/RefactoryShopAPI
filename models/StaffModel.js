@@ -1,18 +1,19 @@
 const mongoose = require("mongoose");
 
-const facillitatorSchema = new mongoose.Schema({
-  firstName: {
+const staffSchema = new mongoose.Schema({
+  firstname: {
      type: String, 
     trim: true 
 },
-  lastName: { 
+  lastname: { 
     type: String, 
     trim: true
  },
   email: { 
     type: String, 
     trim: true, 
-    unique:true},
+    unique:true
+  },
   phone: { 
     type: String,
      trim: true 
@@ -23,4 +24,4 @@ const facillitatorSchema = new mongoose.Schema({
   department: { type: String, trim: true },
 });
 
-module.exports = mongoose.model('Facillitator',facillitatorSchema)
+module.exports = mongoose.model('Staff',staffSchema)
