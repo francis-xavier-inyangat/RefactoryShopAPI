@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const programSchema = new mongoose.Schema({
-  programname: { 
+  program: { 
     type: String,
     trim: true 
     },

@@ -14,13 +14,13 @@ router.post('/staff/register', async(req,res)=>{
     const newStaff = new Staff(req.body);
     await newStaff.save();
     res.json({
-        // message:'Staff Registered successfuly',
+        message:'Staff Registered successfuly',
         newStaff
     });
     console.log(newStaff);
    }
    catch(err){
-    res.status(400).send("Failed to register Staff")
+    res.status(400).json("Failed to register Staff")
     console.log(err);
    }
 })
@@ -40,7 +40,7 @@ router.get('/staff/getlist', async(req,res)=>{
      console.log(staffList);
     }
     catch(err){
-     res.status(400).send("Failed to find Staff")
+     res.status(400).json("Failed to find Staff")
      console.log(err);
     }
  })
@@ -55,12 +55,12 @@ router.get('/staff/:id', async(req,res)=>{
 
      res.json({
          message:'Staff Details',
-         staffList
+         staff
      });
-     console.log(staffList);
+     console.log(staff);
     }
     catch(err){
-     res.status(400).send("Failed to find a Staff with that ID")
+     res.status(400).json("Failed to find a Staff with that ID")
      console.log(err);
     }
  })
@@ -69,16 +69,16 @@ router.get('/staff/:id', async(req,res)=>{
 router.delete('/staff/:id', async(req,res)=>{
     try{
         
-     const staff = await Staff.findOne({_id:req.params.id});
+      await Staff.deleteOne({_id:req.params.id});
 
      res.json({
          message:'Staff deleted',
-         staffList
+        
      });
-     console.log(staffList);
+     
     }
     catch(err){
-     res.status(400).send("Failed to delete staff")
+     res.status(400).json("Failed to delete staff")
      console.log(err);
     }
  })
@@ -90,7 +90,7 @@ router.patch('/staff/:id', async(req,res)=>{
     const options = {new:true}
      const updateStaff = await Staff.findOneAndUpdate({_id:req.params.id},{
         $set:{firstname:req.body.firstname,
-            last:req.body.lastname,
+            lastname:req.body.lastname,
             email:req.body.email,
             phone:req.body.phone,
             role:req.body.role,
@@ -103,9 +103,9 @@ router.patch('/staff/:id', async(req,res)=>{
 
      res.json({
          message:'Staff Updated ok',
-         staffList
+         updateStaff
      });
-     console.log(staffList);
+     console.log(updateStaff);
     }
     catch(err){
      res.status(400).send("Failed to update  Staff")

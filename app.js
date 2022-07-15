@@ -3,7 +3,9 @@ mongoose = require('mongoose'),
 config = require('./config/db')
  
 const staffRoutes = require("./routes/staffRoutes")
-// const serviceRoutes = require('./routes/serviceRoutes');
+const programRoutes = require("./routes/programRoute")
+const courseRoutes = require("./routes/courseRoutes")
+const alumniRoutes = require('./routes/alumniRoutes');
 
 const app = express();
 
@@ -25,7 +27,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
 app.use('/api',staffRoutes)
-
+app.use('/api',programRoutes)
+app.use('/api', courseRoutes);
+app.use('/api', alumniRoutes)
 
 
 
